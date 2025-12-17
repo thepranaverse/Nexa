@@ -2,8 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import "../styles/sidebar.css";
 import { MyContext } from "../context/myContext";
 import { v1 as uuidv1 } from "uuid";
+import blackLogo from "../assets/blacklogo.png";
 
 const Sidebar = () => {
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   const {
     allThreads,
     setAllThreads,
@@ -17,9 +20,7 @@ const Sidebar = () => {
 
   const getAllThreads = async () => {
     try {
-      const response = await fetch(
-        "http://localhost:4000/api/thread/allThreads"
-      );
+      const response = await fetch(`${API_BASE}/api/thread/allThreads`);
       const res = await response.json();
       const filteredData = res.map((thread) => ({
         threadId: thread.threadId,
@@ -49,7 +50,7 @@ const Sidebar = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/api/thread/allThreads/${newThreadId}`
+        `${API_BASE}/api/thread/allThreads/${newThreadId}`
       );
       const res = await response.json();
       console.log(res);
@@ -64,7 +65,7 @@ const Sidebar = () => {
   const deleteThread = async (threadId) => {
     try {
       const response = await fetch(
-        `http://localhost:4000/api/thread/allThreads/${threadId}`,
+        `${API_BASE}/api/thread/allThreads/${threadId}`,
         { method: "DELETE" }
       );
       const res = await response.json();
@@ -86,11 +87,7 @@ const Sidebar = () => {
   return (
     <section className="sidebar">
       <button onClick={createNewChat}>
-        <img
-          src="src/assets/blacklogo.png"
-          alt="gpt logo"
-          className="logo"
-        ></img>
+        <img src={blackLogo} alt="logo" />
         <h3>New Chat</h3>
         <span>
           <i className="fa-solid fa-pen-to-square"></i>

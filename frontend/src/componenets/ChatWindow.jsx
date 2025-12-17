@@ -5,6 +5,8 @@ import { MyContext } from "../context/myContext.jsx";
 import { ScaleLoader } from "react-spinners";
 
 const ChatWindow = () => {
+  const API_BASE = import.meta.env.VITE_API_URL;
+
   const {
     prompt,
     setPrompt,
@@ -39,10 +41,7 @@ const ChatWindow = () => {
     };
 
     try {
-      const response = await fetch(
-        "http://localhost:4000/api/thread/chat",
-        options
-      );
+      const response = await fetch(`${API_BASE}/api/thread/chat`, options);
       const res = await response.json();
       console.log(res);
       setReply(res.reply);
