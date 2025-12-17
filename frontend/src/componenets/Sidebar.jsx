@@ -87,7 +87,7 @@ const Sidebar = () => {
   return (
     <section className="sidebar">
       <button onClick={createNewChat}>
-        <img src={blackLogo} alt="logo" />
+        <img src={blackLogo} alt="gpt logo" className="logo"></img>
         <h3>New Chat</h3>
         <span>
           <i className="fa-solid fa-pen-to-square"></i>
